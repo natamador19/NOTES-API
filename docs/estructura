@@ -8,7 +8,7 @@ user_id: new ObjectID(id)
 
 -Modificar Uno (Titulo y contenido) ->Nataly
 -Eliminar Uno -> Allan  
--Mostrar Todos -> Mayra
+-Mostrar Todos -> Mayra 
 -Mostrar Uno->Mayra
 -getById->Angel
 
