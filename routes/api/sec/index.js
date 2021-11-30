@@ -17,7 +17,6 @@ router.post('/login',async(req,res,next)=>{
                 delete  userLogged.oldpasswords;
                 delete userLogged.laslogin;
                 delete userLogged.lastpasswordchange;
-                delete userLogger.passwordexpires;
                 let payload={
                     jwt:jwt.sign(
                         {
