@@ -19,10 +19,10 @@ class Notes{
         }
     }
 
-    async addNote(noteTitle, noteContent,id){
+    async addNew(noteTitle, noteContent,id){
         let newNote={
-            noteTitle=noteTitle,
-            noteContent=noteContent,
+            noteTitle,
+            noteContent,
             noteDate: new Date().getTime(),
             user_id: new ObjectID(id)
         }
@@ -30,3 +30,5 @@ class Notes{
         return result;
     }
 }
+
+module.exports = Notes;

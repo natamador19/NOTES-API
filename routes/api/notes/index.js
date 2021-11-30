@@ -3,7 +3,7 @@ var router= express.Router();
 var NotesDao= require('./notes.dao');
 var Notes= new NotesDao();
 
-router.post('/newNote',async (req,res,next)=>{
+router.post('/newNote', async (req,res,next)=>{
     try {
         const {noteTitle,noteContent}=req.body;
         const result = await Notes.addNew(noteTitle,noteContent,req.user._id);

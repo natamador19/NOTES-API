@@ -21,13 +21,16 @@ passport.use(
 
 const jwtMiddleware=passport.authenticate('jwt',{session:false});
 router.use(passport.initialize());
-var notesRouter= require('./notes/index');
+
+var noteRouter= require('./notes/index');
 var secRouter= require('./sec/index');
+
 
 router.get('/',(req,res,next)=>{
     res.status(200).json({"msg":"Api"})
 });
 router.use('/sec', secRouter);
-router.use('/notes', jwtMiddleware ,notesRouter);
+router.use('/notes', jwtMiddleware ,noteRouter);
+
 
 module.exports=router;
