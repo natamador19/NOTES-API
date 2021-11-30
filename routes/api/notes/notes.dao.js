@@ -23,6 +23,7 @@ class Notes{
         let newNote={
             noteTitle=noteTitle,
             noteContent=noteContent,
+            noteDate: new Date().getTime(),
             user_id: new ObjectID(id)
         }
         let result = await this.notescoll.insertOne(newNote);

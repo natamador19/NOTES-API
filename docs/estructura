@@ -2,3 +2,14 @@ noteTitle,
 noteContent,
 noteDate: new Date().getTime()
 user_id: new ObjectID(id)
+
+//
+-Agregar  -Ya
+
+-Modificar Uno (Titulo y contenido) ->Nataly
+-Eliminar Uno -> Allan  
+-Mostrar Todos -> Mayra
+-Mostrar Uno->Mayra
+-getById->Angel
+
+
