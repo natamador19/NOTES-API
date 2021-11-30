@@ -1,0 +1,4 @@
+noteTitle,
+noteContent,
+noteDate: new Date().getTime()
+user_id: new ObjectID(id)
