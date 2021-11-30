@@ -25,7 +25,7 @@ router.post('/newNote', async (req,res,next)=>{
     }
 });
 
-router.delete('/delete/:id', async (req, res, next)=>{
+router.delete('/deleteNote/:id', async (req, res, next)=>{
     try {
       const {id} = req.params;
       const result = await Notes.deleteById(id, req.user._id);
