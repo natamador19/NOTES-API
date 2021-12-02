@@ -36,11 +36,24 @@ class Notes{
         return result;
     }
 
+    async updateNote(noteT,noteC,id){
+        const filter={"_id": new ObjectID(id)};
+        const update={"$set":{noteTitle:noteT,noteContent:noteC}};
+        let result= await this.notescoll.updateOne(filter,update);
+        return result;
+    }
+
     async deleteById(id) {
         let filter = { "_id": new ObjectID(id) };
         let result = await this.notescoll.deleteOne(filter);
         return result;
       }
+    async getById(id){
+        let filter={"_id": new ObjectID(id)};
+        let result= await this.notescoll.findOne(filter);
+        return result;
+    }
+
 
 }
 

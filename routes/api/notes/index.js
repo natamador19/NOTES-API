@@ -22,6 +22,7 @@ router.post('/newNote', async (req,res,next)=>{
         res.status(200).json({msg:"Nota Agregada!"});
     } catch (ex) {
         console.log(ex);
+        return res.status(500).json({msg:"Error al procesar petición"});
     }
 });
 
@@ -36,6 +37,35 @@ router.delete('/deleteNote/:id', async (req, res, next)=>{
       return res.status(500).json({ msg: "Error al procesar petición" });
     }
   }); 
+
+  router.put('/update/:id',async(req,res,next)=>{
+    try {
+        const {id}=req.params;
+        const {noteTitle,noteContent}=req.body;
+        const result = await Notes.updateNote(noteTitle,noteContent,id);
+        console.log(result);
+        return res.status(200).json({"msg":"Nota Actualizada"});
+    } catch (ex) {
+        console.log(ex);
+        return res.status(500).json({msg:"Error al procesar petición"});
+    }
+  });
+
+  router.get('/notebyid/:id',async(req,res,next)=>{
+    try {
+        const {id}=req.params;
+        const result=await Notes.getById(id);
+        console.log(result);
+        return res.status(200).json(result);
+    } catch (ex) {
+        console.log(x);
+        return res.status(500).json({msg:"Error al procesar petición"});
+        
+    }
+  });
+
+
+ 
   
 
 

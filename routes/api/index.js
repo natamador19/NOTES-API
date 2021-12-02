@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-
+require('dotenv').config();
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const extractJWT = passportJWT.ExtractJwt;
@@ -29,6 +29,7 @@ var secRouter= require('./sec/index');
 router.get('/',(req,res,next)=>{
     res.status(200).json({"msg":"Api"})
 });
+
 router.use('/sec', secRouter);
 router.use('/notes', jwtMiddleware ,noteRouter);
 

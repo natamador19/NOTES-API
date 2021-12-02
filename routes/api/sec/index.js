@@ -15,7 +15,7 @@ router.post('/login',async(req,res,next)=>{
             if(isPswdOk){
                 delete userLogged.password;
                 delete  userLogged.oldpasswords;
-                delete userLogged.laslogin;
+                delete userLogged.lastlogin;
                 delete userLogged.lastpasswordchange;
                 let payload={
                     jwt:jwt.sign(
@@ -44,7 +44,7 @@ router.post('/login',async(req,res,next)=>{
 router.post('/signin',async(req,res,next)=>{
     try {
         const {email,pswd}=req.body;
-        let userAdded=await SecModel.createNewUser(email,pswd);
+        let userAdded=await SecModel.newUser(email,pswd);
         delete userAdded.password;
         console.log(userAdded);
         res.status(200).json({"msg":"usuario creado"});
