@@ -19,6 +19,12 @@ class Notes{
         }
     }
 
+    async getAll(id){
+        const filter = {"user_id": new ObjectID(id)}
+        let notes = await this.notescoll.find(filter);
+        return notes.toArray();
+      }
+
     async addNew(noteTitle, noteContent,id){
         let newNote={
             noteTitle,
@@ -29,6 +35,13 @@ class Notes{
         let result = await this.notescoll.insertOne(newNote);
         return result;
     }
+
+    async deleteById(id) {
+        let filter = { "_id": new ObjectID(id) };
+        let result = await this.notescoll.deleteOne(filter);
+        return result;
+      }
+
 }
 
 module.exports = Notes;
