@@ -54,6 +54,24 @@ class Notes{
         return result;
     }
 
+    async getByFacet(textToSearch,page,itemsPerPage,userId){
+        const filter={noteContent:RegExp(textToSearch,'g'),"user_id": new ObjectID(userId)};
+        let cursor=await this.notescoll.find(filter);
+        let docsMatched=await cursor.count();
+        cursor.sort({noteTitle:1});
+        cursor.skip((itemsPerPage*(page-1)));
+        cursor.limit(itemsPerPage);
+
+        let documents = await cursor.toArray();
+        return{
+            docsMatched,
+            documents,
+            page,
+            itemsPerPage
+        }
+    }
+
+
 
 }
 

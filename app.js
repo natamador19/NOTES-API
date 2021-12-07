@@ -5,6 +5,19 @@ var cookieParser = require('cookie-parser');
 var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
 
+var cors = require('cors');
+var corsWhiteList = ('http://localhost:3001,http://localhost:3000');
+var corsOptions = {
+  origin: (origin, callback)=>{
+    if(corsWhiteList.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  }
+}
+
+
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api/index');
@@ -22,8 +35,9 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//app.use(cors(corsOptions));
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
+app.use('/api', cors(corsOptions), apiRouter);
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

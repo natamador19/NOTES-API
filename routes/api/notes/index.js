@@ -26,17 +26,7 @@ router.post('/newNote', async (req,res,next)=>{
     }
 });
 
-router.delete('/deleteNote/:id', async (req, res, next)=>{
-    try {
-      const {id} = req.params;
-      const result = await Notes.deleteById(id, req.user._id);
-      console.log(result);
-      return res.status(200).json({"msg":"Eliminado OK"});
-    } catch (ex) {
-      console.log(ex);
-      return res.status(500).json({ msg: "Error al procesar petición" });
-    }
-  }); 
+
 
   router.put('/update/:id',async(req,res,next)=>{
     try {
@@ -61,6 +51,21 @@ router.delete('/deleteNote/:id', async (req, res, next)=>{
         console.log(x);
         return res.status(500).json({msg:"Error al procesar petición"});
         
+    }
+  });
+
+  router.get('/facet/:page/:items',async (req,res,next)=>{
+    try {
+      let {page,items}=req.params;
+      page=parseInt(page)||1;
+      items=parseInt(items)||10;
+      const notes=await Notes.getByFacet('',page,items,req.user._id);
+      return res.status(200).json(notes);
+      
+    } catch (ex) {
+      console.log(x);
+      return res.status(500).json({msg:"Error al procesar petición"});
+      
     }
   });
 
